@@ -1,5 +1,5 @@
 {
-  "name": "rails_api_base",
+  "name": "customer_onboarding",
   "private": "true",
   "engines": {
     "node": "20.10.0",
