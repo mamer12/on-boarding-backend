@@ -23,6 +23,8 @@
 #  provider               :string           default("email"), not null
 #  uid                    :string           default(""), not null
 #  tokens                 :json
+#  phone_number           :string
+#  status                 :boolean
 #
 # Indexes
 #

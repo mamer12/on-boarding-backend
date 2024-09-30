@@ -9,7 +9,7 @@ module API
       private
 
       def resource_params
-        params.require(:user).permit(:email, :password)
+        params.require(:user).permit(:phone_number, :password)
       end
 
       def render_create_success

@@ -23,6 +23,8 @@
 #  provider               :string           default("email"), not null
 #  uid                    :string           default(""), not null
 #  tokens                 :json
+#  phone_number           :string
+#  status                 :boolean
 #
 # Indexes
 #
@@ -33,9 +35,11 @@
 
 FactoryBot.define do
   factory :user do
-    email    { Faker::Internet.unique.email }
-    password { Faker::Internet.password(min_length: 8) }
-    username { Faker::Internet.unique.user_name }
-    uid      { Faker::Internet.uuid }
+    email { Faker::Internet.email }
+    password { 'password' }
+    first_name { 'John' }
+    last_name { 'Doe' }
+    phone_number { Faker::PhoneNumber.phone_number }
+    status { true }
   end
 end

@@ -23,6 +23,8 @@
 #  provider               :string           default("email"), not null
 #  uid                    :string           default(""), not null
 #  tokens                 :json
+#  phone_number           :string
+#  status                 :boolean
 #
 # Indexes
 #
@@ -39,6 +41,11 @@ class User < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   validates :uid, uniqueness: { scope: :provider }
+  validates :phone_number, presence: true, uniqueness: true, format: { with: /\A\d{10,15}\z/, message: 'must be a valid phone number' }
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :status, inclusion: { in: [true, false] }
 
   attribute :impersonated_by, :integer
 
@@ -59,6 +66,19 @@ class User < ApplicationRecord
     return username if first_name.blank?
 
     "#{first_name} #{last_name}"
+  end
+
+    # Override Devise to use phone_number as the authentication key
+  def email_required?
+    false
+  end
+
+  def email_changed?
+    false
+  end
+
+  def will_save_change_to_email?
+    false
   end
 
   private
