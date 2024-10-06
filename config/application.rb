@@ -36,7 +36,7 @@ module App
       user_name: 'apikey'
     }
     config.action_mailer.default_url_options = { host: ENV.fetch('SERVER_HOST', nil),
-                                                 port: ENV.fetch('PORT', 3000) }
+                                                 port: ENV.fetch('PORT', 4000) }
     config.action_mailer.default_options = {
       from: 'no-reply@example.com'
     }
